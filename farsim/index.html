@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terminalspel</title>
+  <title>FÅR SIMULATOR</title>
   <style>
     body {
       display: flex;
@@ -34,6 +34,11 @@
       max-width: 600px;
       
     }
+
+    #restart {
+      display: none;
+    }
+
     #userInput {
       flex: 1;
       background-color: #000;
@@ -54,6 +59,7 @@
     button:hover {
       background-color: #00cc00;
     }
+
   </style>
 </head>
 <body>
@@ -61,7 +67,11 @@
   
   <div id="input">
     <input type="text" id="userInput" placeholder="Bräk här..." autofocus>
-    <!-- <button onclick="sendCommand()">Skicka</button> -->
+    
+  </div>
+
+  <div id="restart">
+    <button onclick="reloadPage()">RESTART</button>
   </div>
 
   <script>
@@ -69,10 +79,11 @@
     const userInput = document.getElementById('userInput');
 
 
-    addOutput("fårsimulator")
-    addOutput("säg bää")
+    addOutput("Välkommen till Får simulator");
+    addOutput(".");
+    addOutput("Säg Bää");
 
-    let living = true
+    const bleats = ["Bää", "Bä", "bä", "bää", "BÄÄ", "BÄ", "Bää!", "Bä!", "bä!", "bää!", "BÄÄ!", "BÄ!"];
 
     
     
@@ -85,13 +96,15 @@
         addOutput(`> ${command}`);
         userInput.value = ''; // Rensa input-fältet
 
-        if (command == "bää") {
-          addOutput("bra bräkt")
-          addOutput("säg bää")
+        if (bleats.includes(command)) {
+          addOutput("bra bräkt");
+          addOutput(".");
+          addOutput("Säg Bää");
         } else {
-          addOutput("game over")
-          living = false
+          addOutput("game over");
+          
           document.getElementById("input").style.display = "none";
+          document.getElementById("restart").style.display = "flex";
         }
 
         // Här kan du bearbeta kommandot och lägga till spelets svar
@@ -115,6 +128,10 @@
         sendCommand();
       }
     });
+
+    function reloadPage() {
+      window.location.reload();
+    }
   </script>
 </body>
 </html>
