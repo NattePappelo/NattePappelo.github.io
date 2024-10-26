@@ -1,10 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 <head>
-	<title></title>
-	<meta http-equiv="refresh" content="0; URL=https://i.chzbgr.com/thumb1200/4663557/hBE9133ED/sheep-memes-funny-sheep-animals" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminalspel</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #1e1e1e;
+      color: #00ff00;
+      font-family: monospace;
+      margin: 0;
+      padding: 20px;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+    #output {
+      background-color: #000;
+      width: 100%;
+      max-width: 600px;
+      height: 70vh;
+      overflow-y: auto;
+      padding: 10px;
+      border: 2px solid #00ff00;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    #input {
+      display: flex;
+      width: 100%;
+      max-width: 600px;
+      
+    }
+    #userInput {
+      flex: 1;
+      background-color: #000;
+      color: #00ff00;
+      border: 2px solid #00ff00;
+      padding: 10px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #00ff00;
+      color: #000;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover {
+      background-color: #00cc00;
+    }
+  </style>
 </head>
 <body>
+  <div id="output"></div>
+  
+  <div id="input">
+    <input type="text" id="userInput" placeholder="Bräk här..." autofocus>
+    <!-- <button onclick="sendCommand()">Skicka</button> -->
+  </div>
 
+  <script>
+    const outputDiv = document.getElementById('output');
+    const userInput = document.getElementById('userInput');
+
+
+    addOutput("fårsimulator")
+    addOutput("säg bää")
+
+    let living = true
+
+    
+    
+
+
+    function sendCommand() {
+      const command = userInput.value.trim();
+      if (command) {
+        // Visa användarens kommando i utmatningen
+        addOutput(`> ${command}`);
+        userInput.value = ''; // Rensa input-fältet
+
+        if (command == "bää") {
+          addOutput("bra bräkt")
+          addOutput("säg bää")
+        } else {
+          addOutput("game over")
+          living = false
+          document.getElementById("input").style.display = "none";
+        }
+
+        // Här kan du bearbeta kommandot och lägga till spelets svar
+        // Exempel på ett enkelt svar:
+        //let response = `Du skrev: ${command}`;
+        //addOutput(response);
+      }
+    }
+
+    function addOutput(text) {
+      // Lägg till texten i utmatningsrutan
+      const newLine = document.createElement('div');
+      newLine.textContent = text;
+      outputDiv.appendChild(newLine);
+      outputDiv.scrollTop = outputDiv.scrollHeight; // Scrolla till botten
+    }
+
+    // Lyssna på "Enter"-tangenten för att skicka kommandon
+    userInput.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        sendCommand();
+      }
+    });
+  </script>
 </body>
 </html>
