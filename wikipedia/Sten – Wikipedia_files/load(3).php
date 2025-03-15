@@ -1,0 +1,1 @@
+cite{font-style:normal}.badge-recommendedarticle{list-style-image:url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Rekommenderad_grön.svg/9px-Rekommenderad_grön.svg.png")}.mw-collapsible-toggle{margin-left:0.5em;font-weight:normal}
